@@ -21,6 +21,8 @@ export const getCandidatesByPositionService = async (positionId: number) => {
         });
 
         return applications.map(app => ({
+            id: app.candidateId,
+            applicationId: app.id,
             fullName: `${app.candidate.firstName} ${app.candidate.lastName}`,
             currentInterviewStep: app.interviewStep.name,
             averageScore: calculateAverageScore(app.interviews)
@@ -50,7 +52,6 @@ export const getInterviewFlowByPositionService = async (positionId: number) => {
     // Formatear la respuesta para incluir el nombre de la posición y el flujo de entrevistas
     return {
         positionName: positionWithInterviewFlow.title,
-        interviewFlow: {
             id: positionWithInterviewFlow.interviewFlow.id,
             description: positionWithInterviewFlow.interviewFlow.description,
             interviewSteps: positionWithInterviewFlow.interviewFlow.interviewSteps.map(step => ({
@@ -60,6 +61,5 @@ export const getInterviewFlowByPositionService = async (positionId: number) => {
                 name: step.name,
                 orderIndex: step.orderIndex
             }))
-        }
     };
 };
