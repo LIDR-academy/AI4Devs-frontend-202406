@@ -21,6 +21,8 @@ export const getCandidatesByPositionService = async (positionId: number) => {
         });
 
         return applications.map(app => ({
+            id: app.candidate.id, // Incluye el ID del candidato
+            applicationId: app.id, // Incluye el ID de la aplicación
             fullName: `${app.candidate.firstName} ${app.candidate.lastName}`,
             currentInterviewStep: app.interviewStep.name,
             averageScore: calculateAverageScore(app.interviews)
@@ -47,7 +49,6 @@ export const getInterviewFlowByPositionService = async (positionId: number) => {
         throw new Error('Position not found');
     }
 
-    // Formatear la respuesta para incluir el nombre de la posición y el flujo de entrevistas
     return {
         positionName: positionWithInterviewFlow.title,
         interviewFlow: {
