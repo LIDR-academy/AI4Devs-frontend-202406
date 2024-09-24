@@ -1,15 +1,5 @@
 import { Request, Response } from 'express';
-import { getCandidatesByPositionService, getInterviewFlowByPositionService, getAllPositionsService } from '../../application/services/positionService';
-
-
-export const getAllPositions = async (req: Request, res: Response) => {
-    try {
-        const positions = await getAllPositionsService();
-        res.status(200).json(positions);
-    } catch (error) {
-        res.status(500).json({ message: 'Error retrieving positions', error: error instanceof Error ? error.message : String(error) });
-    }
-};
+import { getCandidatesByPositionService, getInterviewFlowByPositionService } from '../../application/services/positionService';
 
 export const getCandidatesByPosition = async (req: Request, res: Response) => {
     try {
