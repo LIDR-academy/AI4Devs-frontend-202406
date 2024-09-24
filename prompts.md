@@ -131,58 +131,61 @@ Result:
 
 ## 3. Answering questions
 
-1. State Management Preferences:
-Do you prefer using a state management library like Redux, or are you inclined towards leveraging React's Context API and hooks for state management?
- >>> Use the same that is set in the @frontend, let me know if there isn't any.
+> 1. State Management Preferences:
+> Do you prefer using a state management library like Redux, or are you inclined towards leveraging React's Context API and hooks for state management?
 
-2. Design Specifics:
-Can you provide more details or resources related to the "example of the interface" mentioned? This will help in understanding the exact design expectations and any specific UI elements required.
- >>> Check the image attached.
+Use the same that is set in the @frontend, let me know if there isn't any.
 
-3. Candidate Data Handling:
-How frequently is the candidate data expected to change? Is real-time synchronization (e.g., using WebSockets) a requirement, or is periodic fetching sufficient?
- >>> the data is periodic on demand, not using websockets, just when the page is accessed.
+> 2. Design Specifics:
+> Can you provide more details or resources related to the "example of the interface" mentioned? This will help in understanding the exact design expectations and any specific UI elements required.
 
-4. User Roles and Permissions:
-Are there different user roles with varying permissions that might affect who can view or modify the candidate stages on the Kanban board?
- >>> None roles implemented
+ Check the image attached.
 
-5. Styling Consistency:
-Should the new interface adhere strictly to the existing Bootstrap-based styling, or is there flexibility to incorporate other styling approaches like CSS Modules or Styled Components?
- >>> Adhere to the current existing styling in @frontend
+> 3. Candidate Data Handling:
+> How frequently is the candidate data expected to change? Is real-time synchronization (e.g., using WebSockets) a requirement, or is periodic 
+ fetching sufficient?
 
-6. Handling Edge Cases:
-How should the system handle edge cases, such as a candidate being moved to a phase that doesn’t exist or API failures during stage updates?
- >>> None edge cases
+The data is periodic on demand, not using websockets, just when the page is accessed.
 
-7. Deployment and Environment:
-Are there specific deployment considerations or environments (e.g., staging, production) that need to be accounted for during development?
- >>> None considerations for deployments
+> 4. User Roles and Permissions:
+> Are there different user roles with varying permissions that might affect who can view or modify the candidate stages on the Kanban board?
 
-8. Performance Metrics:
-Are there any specific performance benchmarks or metrics that the new interface should meet?
- >>> None this time
+None roles implemented
+
+> 5. Styling Consistency:
+> Should the new interface adhere strictly to the existing Bootstrap-based styling, or is there flexibility to incorporate other styling approaches like CSS Modules or Styled Components?
+
+Adhere to the current existing styling in @frontend
+
+> 6. Handling Edge Cases:
+> How should the system handle edge cases, such as a candidate being moved to a phase that doesn’t exist or API failures during stage updates?
+
+None edge cases
+
+> 7. Deployment and Environment:
+> Are there specific deployment considerations or environments (e.g., staging, production) that need to be accounted for during development?
+
+None considerations for deployments
+
+> 8. Performance Metrics:
+> Are there any specific performance benchmarks or metrics that the new interface should meet?
+
+None this time
 
 ## 4. Implementation
 
----
-Let's begin with the implementation, please go step by step and create the different components and pages that are needed for the interface.
----
+- Let's begin with the implementation, please go step by step and create the different components and pages that are needed for the interface.
 
----
-I want you to improve the UI of the Candidate card using the same as the pic attached, please use the same colors and styles.
+- I want you to improve the UI of the Candidate card using the same as the pic attached, please use the same colors and styles.
+
 ![alt text](image.png)
----
 
 ## 5. Fixing and Adjustments
 
----
-On runtime there is an error in the PositionDetails page, line: ` const sortedSteps = res.data.interviewFlow.interviewSteps.sort((a, b) => a.orderIndex - b.orderIndex);`  KanbanBoard.tsx:50 Error fetching interview flow: TypeError: Cannot read properties of undefined (reading 'sort')
+* On runtime there is an error in the PositionDetails page, line: ` const sortedSteps = res.data.interviewFlow.interviewSteps.sort((a, b) => a.orderIndex - b.orderIndex);`  KanbanBoard.tsx:50 Error fetching interview flow: TypeError: Cannot read properties of undefined (reading 'sort')
     at fetchInterviewFlow (KanbanBoard.tsx:47:1)
----
 
----
-Looks like an error n the payload, please fix it, this is the current result:
+* Looks like an error n the payload, please fix it, this is the current result:
 ```json
 {
     "interviewFlow": {
@@ -202,18 +205,7 @@ Looks like an error n the payload, please fix it, this is the current result:
     }
 }
 ```
----
-
----
-I have the following error now : --- ERROR
+* have the following error now : --- ERROR
 Cannot read properties of undefined (reading 'toString')
 TypeError: Cannot read properties of undefined (reading 'toString')
     at CandidateCard (http://localhost:3000/static/js/bundle.js:823:31)
----
-
----
-i have the following error now : --- ERROR
-Cannot read properties of undefined (reading 'toString')
-TypeError: Cannot read properties of undefined (reading 'toString')
-    at CandidateCard (http://localhost:3000/static/js/bundle.js:823:31)
----
