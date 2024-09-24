@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Card, Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
-type Position = {
+export type Position = {
   id: number;
   title: string;
   status: string;
@@ -10,32 +11,7 @@ type Position = {
   contactInfo: string;
 };
 
-const Positions: React.FC = () => {
-  const [positions, setPositions] = useState<Position[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchPositions = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch('http://localhost:3010/positions');
-        if (!response.ok) {
-          throw new Error('Failed to fetch positions');
-        }
-        const data = await response.json();
-        setPositions(data);
-        setError(null);
-      } catch (error) {
-        console.error('Error fetching positions:', error);
-        setError('Failed to load positions. Please try again later.');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPositions();
-  }, []);
+const Positions: React.FC<{ positions: Position[], loading: boolean, error: string | null }> = ({ positions, loading, error }) => {
 
   if (loading) {
     return <div>Loading positions...</div>;
@@ -86,7 +62,9 @@ const Positions: React.FC = () => {
                   {position.status}
                 </span>
                 <div className="d-flex justify-content-between mt-3">
-                  <Button variant="primary">Ver proceso</Button>
+                  <Link to={`/positions/${position.id}`}>
+                    <Button variant="primary">Ver proceso</Button>
+                  </Link>
                   <Button variant="secondary">Editar</Button>
                 </div>
               </Card.Body>
