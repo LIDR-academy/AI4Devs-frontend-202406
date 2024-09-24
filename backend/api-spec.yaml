@@ -286,3 +286,18 @@ paths:
           description: Candidate or application not found
         '500':
           description: Internal server error
+  /positions:
+    get:
+      summary: Get all visible positions
+      description: Retrieves all positions that are marked as visible.
+      responses:
+        '200':
+          description: List of visible positions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Position'
+        '500':
+          description: Internal server error
