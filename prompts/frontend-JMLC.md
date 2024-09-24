@@ -502,7 +502,30 @@ Este endpoint actualiza la etapa del candidato movido. Permite modificar la fase
 Unable to find draggable with id: 0-jane-smith
 ```
 
-
-
-
 **La solución tampoco funciona**
+
+# Pedimos alternativas a la librería de drag-and-drop 
+
+```
+Hay alguna alternativa para drag-and-drop a la librería react-beautiful-dnd?
+```
+
+Respuesta (solo la conclusión):
+```
+...
+## Conclusión
+Cada una de estas librerías tiene sus ventajas y desventajas dependiendo de las necesidades específicas de tu proyecto:
+- dnd-kit: Ideal si buscas una solución moderna, ligera y altamente personalizable.
+- react-dnd: Muy robusta y flexible, adecuada para interacciones complejas.
+- React Sortable HOC: Simple de integrar si ya utilizas HOCs en tu proyecto.
+- React Flow: Perfecta para aplicaciones que requieren diagramación avanzada.
+Te recomiendo evaluar cada una según tus necesidades específicas, la complejidad del flujo de drag-and-drop que deseas implementar y la facilidad de integración con tu código existente.
+```
+
+# Pedimos regenerar el código de KanbanBoard.js con esa librería `react-dnd`
+```Conclusión
+Puedes volver a generar el código de KanbanBoard.js pero usando la librería propuesta "react-dnd"? Ya la he instalado
+```
+
+## FUNCIONA el drag-and-drop, pero no la petición PUT
+
