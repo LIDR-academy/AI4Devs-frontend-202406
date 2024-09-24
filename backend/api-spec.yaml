@@ -216,6 +216,53 @@ paths:
           description: Position not found
         '500':
           description: Internal server error
+  /position/{id}/interviewFlow:
+    get:
+      summary: Get interview flow by position
+      description: Retrieves the interview flow for a specific position.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: ID of the position
+      responses:
+        '200':
+          description: Interview flow retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  positionName:
+                    type: string
+                  interviewFlow:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      description:
+                        type: string
+                      interviewSteps:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            interviewFlowId:
+                              type: integer
+                            interviewTypeId:
+                              type: integer
+                            name:
+                              type: string
+                            orderIndex:
+                              type: integer
+        '404':
+          description: Position not found
+        '500':
+          description: Internal server error
   /candidates/{id}:
     put:
       summary: Update candidate stage
