@@ -20,10 +20,12 @@ export const getCandidatesByPositionService = async (positionId: number) => {
             }
         });
 
-        return applications.map(app => ({
+        return applications.map((app: any) => ({
+            id: app.candidate.id,
             fullName: `${app.candidate.firstName} ${app.candidate.lastName}`,
-            currentInterviewStep: app.interviewStep.name,
-            averageScore: calculateAverageScore(app.interviews)
+            currentInterviewStep: app.currentInterviewStep.toString(),
+            averageScore: calculateAverageScore(app.interviews),
+            applicationId: app.id
         }));
     } catch (error) {
         console.error('Error retrieving candidates by position:', error);
@@ -53,7 +55,7 @@ export const getInterviewFlowByPositionService = async (positionId: number) => {
         interviewFlow: {
             id: positionWithInterviewFlow.interviewFlow.id,
             description: positionWithInterviewFlow.interviewFlow.description,
-            interviewSteps: positionWithInterviewFlow.interviewFlow.interviewSteps.map(step => ({
+            interviewSteps: positionWithInterviewFlow.interviewFlow.interviewSteps.map((step: any) => ({
                 id: step.id,
                 interviewFlowId: step.interviewFlowId,
                 interviewTypeId: step.interviewTypeId,
