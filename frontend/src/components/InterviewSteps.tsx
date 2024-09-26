@@ -104,55 +104,61 @@ const InterviewSteps: React.FC = () => {
 
   return (
     <Container fluid className="mt-4">
-      <h1 className="text-center mb-4">{positionName || 'Loading...'}</h1>
-      {loading ? (
-        <div className="text-center">
-          <Spinner animation="border" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </Spinner>
-        </div>
-      ) : interviewSteps && interviewSteps.length > 0 ? (
-        <DragDropContext onDragEnd={onDragEnd}>
-          <Row className="flex-nowrap overflow-auto">
-            {interviewSteps.map(step => (
-              <Col key={step.id} xs={12} md={4} lg={3} className="mb-4">
-                <Card>
-                  <Card.Header>{step.name}</Card.Header>
-                  <Card.Body>
-                    <Droppable droppableId={step.id.toString()}>
-                      {(dropProvided) => (
-                        <div key={step.id} {...dropProvided.droppableProps} ref={dropProvided.innerRef} style={{ minHeight: '50px' }}>
-                          {candidates
-                            .filter(candidate => candidate.currentInterviewStepId.toString() === step.id.toString())
-                            .map((candidate, index) => (
-                              <Draggable key={candidate.id} draggableId={candidate.id.toString()} index={index}>
-                                {(dragProvided) => (
-                                  <div
-                                    ref={dragProvided.innerRef}
-                                    {...dragProvided.draggableProps}
-                                    {...dragProvided.dragHandleProps}
-                                  >
-                                    {renderCandidateCard(candidate)}
-                                  </div>
-                                )}
-                              </Draggable>
-                            ))}
-                          {dropProvided.placeholder}
-                        </div>
-                      )}
-                    </Droppable>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-        </DragDropContext>
-      ) : (
-        <p className="text-center">No interview steps found for this position.</p>
-      )}
-      <Button variant="secondary" onClick={() => navigate('/positions')} className="mt-4">
-        Back to Positions
-      </Button>
+      <Row className="justify-content-center">
+        <Col xs={12} lg={10} xl={9}>
+          <h1 className="mb-4 fw-bold">{positionName || 'Loading...'}</h1>
+          {loading ? (
+            <div className="text-center">
+              <Spinner animation="border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </Spinner>
+            </div>
+          ) : interviewSteps && interviewSteps.length > 0 ? (
+            <DragDropContext onDragEnd={onDragEnd}>
+              <Row className="flex-nowrap overflow-auto">
+                {interviewSteps.map(step => (
+                  <Col key={step.id} xs={12} md={4} lg={3} className="mb-4">
+                    <Card>
+                      <Card.Header className="fw-bold">{step.name}</Card.Header>
+                      <Card.Body>
+                        <Droppable droppableId={step.id.toString()}>
+                          {(dropProvided) => (
+                            <div key={step.id} {...dropProvided.droppableProps} ref={dropProvided.innerRef} style={{ minHeight: '50px' }}>
+                              {candidates
+                                .filter(candidate => candidate.currentInterviewStepId.toString() === step.id.toString())
+                                .map((candidate, index) => (
+                                  <Draggable key={candidate.id} draggableId={candidate.id.toString()} index={index}>
+                                    {(dragProvided) => (
+                                      <div
+                                        ref={dragProvided.innerRef}
+                                        {...dragProvided.draggableProps}
+                                        {...dragProvided.dragHandleProps}
+                                      >
+                                        {renderCandidateCard(candidate)}
+                                      </div>
+                                    )}
+                                  </Draggable>
+                                ))}
+                              {dropProvided.placeholder}
+                            </div>
+                          )}
+                        </Droppable>
+                      </Card.Body>
+                    </Card>
+                  </Col>
+                ))}
+              </Row>
+            </DragDropContext>
+          ) : (
+            <p className="text-center">No interview steps found for this position.</p>
+          )}
+          <div className="text-center mt-4">
+            <Button variant="secondary" onClick={() => navigate('/positions')} className="mt-4">
+              Back to Positions
+            </Button>
+          </div>
+        </Col>
+      </Row>
     </Container>
   );
 };
