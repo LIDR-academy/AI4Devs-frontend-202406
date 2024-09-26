@@ -54,7 +54,7 @@ export class Application {
     static async findOneByPositionCandidateId(applicationIdNumber: number, candidateId: number): Promise<Application | null> {
         const data = await prisma.application.findFirst({
             where: {
-                id: applicationIdNumber,
+                positionId: applicationIdNumber,
                 candidateId: candidateId
             }
         });
