@@ -1,0 +1,18 @@
+.score-circle {
+  font-size: 1.2em;
+  margin-right: 2px;
+}
+
+.score-circle.filled {
+  color: #28a745;
+}
+
+.overflow-auto {
+  overflow-x: auto;
+}
+
+@media (max-width: 768px) {
+  .flex-nowrap {
+    flex-wrap: wrap !important;
+  }
+}
