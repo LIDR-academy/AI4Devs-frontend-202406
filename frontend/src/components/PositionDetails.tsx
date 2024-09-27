@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import { Position } from './Positions';
+import KanbanBoard from './KanbanBoard';
 
 type PositionDetailsProps = {
   positions: Position[];
@@ -21,7 +22,7 @@ const PositionDetails: React.FC<PositionDetailsProps> = ({ positions }) => {
         &larr; Back to Positions
       </Link>
       <h2 className="text-center mb-4">{position.title}</h2>
-      {/* We will add the rest of the layout later */}
+      <KanbanBoard />
     </Container>
   );
 };
