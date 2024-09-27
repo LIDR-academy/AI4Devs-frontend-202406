@@ -2,23 +2,22 @@ import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import KanbanColumn from './KanbanColumn';
 
-const KanbanBoard: React.FC = () => {
-  const columns = [
-    { title: 'Llamada telefónica', candidates: [
-      { name: 'John Doe', score: 3 },
-      { name: 'Alice Johnson', score: 4 }
-    ]},
-    { title: 'Entrevista técnica', candidates: [
-      { name: 'Jane Smith', score: 3 }
-    ]},
-    { title: 'Entrevista cultural', candidates: [
-      { name: 'Bob Brown', score: 2 }
-    ]},
-    { title: 'Entrevista manager', candidates: [
-      { name: 'Eva White', score: 5 }
-    ]}
-  ];
+interface Candidate {
+  fullName: string;
+  currentInterviewStep: string;
+  averageScore: number;
+}
 
+interface KanbanColumnProps {
+  title: string;
+  candidates: Candidate[];
+}
+
+interface KanbanBoardProps {
+  columns: KanbanColumnProps[];
+}
+
+const KanbanBoard: React.FC<KanbanBoardProps> = ({ columns }) => {
   return (
     <Container fluid className="mt-4">
       <Row>

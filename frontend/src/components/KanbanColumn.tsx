@@ -3,8 +3,9 @@ import { Card } from 'react-bootstrap';
 import KanbanCard from './KanbanCard';
 
 interface Candidate {
-  name: string;
-  score: number;
+  fullName: string;
+  currentInterviewStep: string;
+  averageScore: number;
 }
 
 interface KanbanColumnProps {
@@ -18,7 +19,7 @@ const KanbanColumn: React.FC<KanbanColumnProps> = ({ title, candidates }) => {
       <Card.Header className="bg-light font-weight-bold text-center">{title}</Card.Header>
       <Card.Body className="p-2">
         {candidates.map((candidate, index) => (
-          <KanbanCard key={index} name={candidate.name} score={candidate.score} />
+          <KanbanCard key={index} name={candidate.fullName} score={candidate.averageScore} />
         ))}
       </Card.Body>
     </Card>
