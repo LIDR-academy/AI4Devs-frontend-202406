@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Button, Alert, InputGroup, FormControl, Card, Container, Row, Col } from 'react-bootstrap';
+import { Form, Button, Alert, FormControl, Card, Container, Row, Col } from 'react-bootstrap';
 import { Trash } from 'react-bootstrap-icons';
 import FileUploader from './FileUploader';
 import DatePicker from 'react-datepicker';
@@ -64,8 +64,8 @@ const AddCandidateForm = () => {
             // Format date fields to YYYY-MM-DD before sending to the endpoint
             candidateData.educations = candidateData.educations.map(education => ({
                 ...education,
-                startDate: education.startDate ? education.startDate.toISOString().slice(0, 10) : '',
-                endDate: education.endDate ? education.endDate.toISOString().slice(0, 10) : ''
+                startDate: education.startDate ? education.startDate.toISOString() : null,
+                endDate: education.endDate ? education.endDate.toISOString() : null
             }));
             candidateData.workExperiences = candidateData.workExperiences.map(experience => ({
                 ...experience,
