@@ -24,6 +24,7 @@ export const getCandidatesByPositionService = async (positionId: number) => {
     });
 
     return applications.map((app) => ({
+      id: app.candidate.id,
       fullName: `${app.candidate.firstName} ${app.candidate.lastName}`,
       currentInterviewStep: app.interviewStep.name,
       averageScore: calculateAverageScore(app.interviews),

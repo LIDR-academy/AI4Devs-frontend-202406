@@ -30,6 +30,7 @@ interface InterviewFlowResponse {
 }
 
 interface Candidate {
+  id: number;
   fullName: string;
   currentInterviewStep: string;
   averageScore: number;
@@ -92,13 +93,44 @@ const PositionDetails: React.FC<PositionDetailsProps> = ({ positions }) => {
     candidates: candidates.filter(candidate => candidate.currentInterviewStep === step.name)
   })) || [];
 
+  const handleCandidateMove = async (candidateId: number, newStep: string) => {
+    debugger;
+    try {
+      const response = await fetch(`http://localhost:3010/candidates/${candidateId}/`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          applicationId: position.id,
+          currentInterviewStep: interviewFlow?.interviewSteps.find(step => step.name === newStep)?.id ?? 0,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update candidate stage');
+      }
+
+      const updatedCandidate = await response.json();
+
+      setCandidates(prevCandidates =>
+        prevCandidates.map(c =>
+          c.id === updatedCandidate.id ? updatedCandidate : c
+        )
+      );
+    } catch (error) {
+      console.error('Error updating candidate stage:', error);
+      // You might want to show an error message to the user here
+    }
+  };
+
   return (
     <Container className="mt-5">
       <Link to="/positions" className="inline-block mb-4 px-4 py-2 bg-blue-500 text-black rounded hover:bg-blue-600 transition-colors">
         &larr; Back to Positions
       </Link>
       <h2 className="text-center mb-4">{position.title}</h2>
-      <KanbanBoard columns={kanbanData} />
+      <KanbanBoard columns={kanbanData} onCandidateMove={handleCandidateMove} />
     </Container>
   );
 };
